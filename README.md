@@ -44,6 +44,7 @@ You can use postman to test your MCP server and the tools you implement.
 1. Install [Postman](https://www.postman.com/downloads/) (for testing the MCP server)
 2. Start Postman and connect it to the MCP server
 
+   - Create a free account (MCP is only available for registered users)
    - Click "New" in the top left
    - Select "MCP" in the dialog
    - Choose "HTTP" (instead of "STDIO") and enter `http://localhost:3000/mcp` as the URL
