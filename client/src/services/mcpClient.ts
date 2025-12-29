@@ -1,13 +1,13 @@
 import { type DynamicStructuredTool } from '@langchain/core/tools';
 import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import { loadMcpTools } from '@langchain/mcp-adapters';
-import { AzureChatOpenAI } from '@langchain/openai';
+import { ChatOpenAI } from '@langchain/openai';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 export class MCPChatClient {
   private client: Client | null = null;
-  private model: AzureChatOpenAI | null = null;
+  private model: ChatOpenAI | null = null;
   private agent: ReturnType<typeof createReactAgent> | null = null;
   private isConnected = false;
   private availableTools: DynamicStructuredTool[] = [];
@@ -15,13 +15,9 @@ export class MCPChatClient {
   async initialize() {
     try {
       // Initialize the Azure OpenAI model
-      this.model = new AzureChatOpenAI({
+      this.model = new ChatOpenAI({
         model: 'gpt-4o',
-        azureOpenAIApiVersion: '2025-01-01-preview',
-        azureOpenAIApiKey: process.env.OPENAI_API_KEY,
-        azureOpenAIApiInstanceName:
-          'oai-meetup-salzburg-software-craftsmanship-mcp-weu',
-        azureOpenAIApiDeploymentName: 'gpt-4o',
+        openAIApiKey: process.env.OPENAI_API_KEY,
       });
 
       // Create transport for a local HTTP MCP server
