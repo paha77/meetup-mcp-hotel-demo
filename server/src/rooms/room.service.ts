@@ -14,6 +14,17 @@ export class RoomService {
     private bookingService: BookingService,
   ) {}
 
+  async getRooms(): Promise<RoomResult[]> {
+    const rooms = await this.roomRepository.findAll();
+    return rooms.map((room) => {
+      const roomResult = this.mapToRoomResult(room);
+      return {
+        ...roomResult,
+        description: this.getRoomTypeDescription(room.type),
+      };
+    });
+  }
+
   async getRoomByRoomNumber(roomNumber: string): Promise<RoomResult | null> {
     const room = await this.roomRepository.findOne({ roomNumber });
 

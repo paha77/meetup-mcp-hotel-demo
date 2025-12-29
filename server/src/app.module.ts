@@ -12,7 +12,8 @@ import { RoomsModule } from './rooms/rooms.module';
     McpModule.forRoot({
       name: 'hotel-mcp-server',
       version: '1.0.0',
-      instructions: '', // TODO: add a "usage guide" about your server for the LLM here
+      instructions:
+        'We provide a list of rooms with room number, type and capacity. You can check the availability of a room with room number, check-in and check-out date. If the room is available you can book the room with guest name and email.  If the room is not available, try another room. For every room we provide a detail room description suitable to create an image. Bookings can be cancelled as well.', // TODO: add a "usage guide" about your server for the LLM here
     }),
     BookingsModule,
     RoomsModule,
